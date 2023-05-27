@@ -29,3 +29,7 @@ output "public_dns" {
 module "aws_s3_bucket_elb" {
   source = "./storage"
 }
+
+module "aws_vpc" {
+  source = "./network"
+}
