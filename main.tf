@@ -25,3 +25,7 @@ module "describe_regions_for_ec2" {
 output "public_dns" {
   value = module.web_server.public_dns
 }
+
+module "aws_s3_bucket_elb" {
+  source = "./storage"
+}
