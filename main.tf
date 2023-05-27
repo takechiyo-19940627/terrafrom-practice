@@ -2,17 +2,11 @@ provider "aws" {
   region  = "ap-northeast-1"
 }
 
-resource "aws_instance" "app_server" {
-  ami = "ami-03dceaabddff8067e"
+module "web_server" {
+  source = "./http_server/"
   instance_type = "t2.micro"
+}
 
-  tags = {
-    Name = "Example"
-  }
-
-  user_data = <<EOF
-    #!/bin/bash
-    yum install -y httpd
-    systemctl start http.service
-  EOF
+output "public_dns" {
+  value = module.web_server.public_dns
 }
